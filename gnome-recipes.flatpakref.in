@@ -7,3 +7,4 @@ IsRuntime=False
 GPGKey=@GPG@
 RuntimeRepo=https://sdk.gnome.org/gnome.flatpakrepo
 Comment=GNOME loves to cook
+Commit=@COMMIT@
