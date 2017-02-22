@@ -8,7 +8,7 @@ test: test-repo org.gnome.Recipes.flatpak.json
 
 release: repo org.gnome.Recipes.flatpak.json
 	if [ "x${RELEASE_GPG_KEY}" == "x" ]; then echo Must set RELEASE_GPG_KEY in Makefile.config, try \'make gpg-key\'; exit 1; fi
-	flatpak-builder --force-clean --repo=repo  --ccache --gpg-homedir=gpg --gpg-sign=${RELEASE_GPG_KEY} recipes  org.gnome.Recipes.flatpak.json
+	flatpak-builder --verbose --force-clean --repo=repo  --ccache --gpg-homedir=gpg --gpg-sign=${RELEASE_GPG_KEY} recipes  org.gnome.Recipes.flatpak.json
 	flatpak build-update-repo --generate-static-deltas --gpg-homedir=gpg --gpg-sign=${RELEASE_GPG_KEY} repo
 
 test-repo:
