@@ -24,4 +24,4 @@ gpg-key:
 	echo Enter the above gpg key id as RELEASE_GPG_KEY in Makefile.config
 
 gnome-recipes.flatpakref: gnome-recipes.flatpakref.in
-	sed -e 's|@URL@|${URL}|g' -e 's|@GPG@|$(shell gpg2 --homedir=gpg --export ${RELEASE_GPG_KEY} | base64 | tr -d '\n')|' -e 's|@COMMIT@|$(shell cd .flatpak-builder/git/git_git.gnome.org_recipes; git describe)|'  $< > $@
+	sed -e 's|@URL@|${URL}|g' -e 's|@GPG@|$(shell gpg2 --homedir=gpg --export ${RELEASE_GPG_KEY} | base64 | tr -d '\n')|' $< > $@
