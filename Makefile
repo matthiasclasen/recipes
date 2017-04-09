@@ -13,12 +13,12 @@ devel-release: repo
 	if [ "x${RELEASE_GPG_KEY}" == "x" ]; then echo Must set RELEASE_GPG_KEY in Makefile.config, try \'make gpg-key\'; exit 1; fi
 	flatpak-builder --verbose --force-clean --repo=repo --ccache --gpg-homedir=gpg --gpg-sign=${RELEASE_GPG_KEY} --from-git=git://git.gnome.org/recipes --from-git-branch=master recipes flatpak/org.gnome.Recipes.json
 	flatpak-builder --verbose --force-clean --arch=i386 --repo=repo --ccache --gpg-homedir=gpg --gpg-sign=${RELEASE_GPG_KEY} --from-git=git://git.gnome.org/recipes --from-git-branch=master recipes flatpak/org.gnome.Recipes.json
-	flatpak build-update-repo --generate-static-deltas--gpg-homedir=gpg --gpg-sign=${RELEASE_GPG_KEY} repo
+	flatpak build-update-repo --generate-static-deltas --gpg-homedir=gpg --gpg-sign=${RELEASE_GPG_KEY} --default-branch=1.0 --title=Recipes repo
 
 stable-release: repo
 	flatpak-builder --verbose --force-clean --repo=repo --ccache --gpg-homedir=gpg --gpg-sign=${RELEASE_GPG_KEY} --from-git=git://git.gnome.org/recipes --from-git-branch=recipes-1.0 recipes flatpak/org.gnome.Recipes.json
 	flatpak-builder --verbose --force-clean --arch=i386 --repo=repo --ccache --gpg-homedir=gpg --gpg-sign=${RELEASE_GPG_KEY} --from-git=git://git.gnome.org/recipes --from-git-branch=recipes-1.0 recipes flatpak/org.gnome.Recipes.json
-	flatpak build-update-repo --generate-static-deltas--gpg-homedir=gpg --gpg-sign=${RELEASE_GPG_KEY} repo
+	flatpak build-update-repo --generate-static-deltas --gpg-homedir=gpg --gpg-sign=${RELEASE_GPG_KEY} --default-branch=1.0 --title=Recipes repo
 
 test-repo:
 	ostree init --mode=archive-z2 --repo=test-repo
